@@ -12,6 +12,7 @@ parser.add_argument('args', nargs='*', help='Action arguments')
 TODO_FILE = 'todo.json'
 
 class Task:
+    """Class representing a single task"""
     def __init__(self, id, title, description, status='pending'):
         self.id = id
         self.title = title
@@ -19,6 +20,7 @@ class Task:
         self.status = status
     
     def __repr__(self):
+        """Return a string representation of a task"""
         return f"ID: {self.id}\nTitle: {self.title}\nDescription: {self.description}\nStatus: {self.status}\n"
 
 def load_tasks():
