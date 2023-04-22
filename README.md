@@ -22,6 +22,3 @@ SweetTask is a simple command-line tool to manage your daily tasks efficiently. 
 - [ ] Add support for due dates
 - [ ] Improve error handling
 - [ ] Add unit tests
-
-🔒 **License**
-This project is licensed under the MIT License - see the LICENSE file for details.
