@@ -1,5 +1,6 @@
 import argparse
 import json
+from datetime import datetime
 
 parser = argparse.ArgumentParser(description='Manage your daily tasks efficiently')
 group = parser.add_mutually_exclusive_group()
@@ -10,11 +11,13 @@ parser.add_argument('args', nargs='*', help='Action arguments')
 TODO_FILE = 'todo.json'
 
 class Task:
-    def __init__(self, id, title, description, status='pending'):
+    def __init__(self, id, title, description, due_date=None, status='pending'):
         self.id, self.title, self.description, self.status = id, title, description, status
+        self.due_date = datetime.strptime(due_date, '%Y-%m-%d') if due_date else None
     
     def __repr__(self):
-        return f"ID: {self.id}\nTitle: {self.title}\nDescription: {self.description}\nStatus: {self.status}\n"
+        due_date_string = f"Due Date: {self.due_date.strftime('%Y-%m-%d')}" if self.due_date else ''
+        return f"ID: {self.id}\nTitle: {self.title}\nDescription: {self.description}\nStatus: {self.status}\n{due_date_string}\n"
 
 def load_tasks():
     try:
@@ -30,9 +33,10 @@ def save_tasks(tasks):
 
 def add_task(args):
     new_id = tasks[-1].id + 1 if tasks else 1
-    tasks.append(Task(new_id, *args))
+    title, description, due_date = args
+    tasks.append(Task(new_id, title, description, due_date))
     save_tasks(tasks)
-    print(f"Task '{args[0]}' added with ID {new_id}")
+    print(f"Task '{title}' added with ID {new_id}")
 
 def delete_task(args):
     id = int(args[0])
