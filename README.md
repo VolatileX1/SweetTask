@@ -6,6 +6,7 @@ SweetTask is a simple command-line tool to manage your daily tasks efficiently. 
 - [x] Add new tasks with a title and description
 - [x] Delete existing tasks by providing a task ID
 - [x] View all tasks or filter them by status (completed, pending, or due)
+- [x] Task management
 
 💻 **Installation**
 1. [x] Clone the repository: `git clone https://github.com/<username>/<repository>.git`
